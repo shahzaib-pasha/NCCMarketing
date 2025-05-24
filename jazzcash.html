@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buy Now - Checkout</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+    }
+
+    header {
+      background-color: #131921;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    .summary, .form-section {
+      margin-bottom: 2rem;
+    }
+
+    .summary img {
+      max-width: 120px;
+      border-radius: 10px;
+    }
+
+    .product-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .product-info div {
+      line-height: 1.6;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.3rem;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .payment-methods {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .method {
+      flex: 1;
+      border: 1px solid #ddd;
+      padding: 1rem;
+      border-radius: 5px;
+      text-align: center;
+      background: #fafafa;
+    }
+
+    .qr-code {
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .qr-code img {
+      max-width: 200px;
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+    }
+
+    .btn {
+      background-color: #ff9900;
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+      width: 100%;
+      margin-top: 2rem;
+    }
+
+    .btn:hover {
+      background-color: #e68a00;
+    }
+
+    @media (max-width: 600px) {
+      .product-info {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Checkout - Buy Now</h1>
+  </header>
+
+  <div class="container">
+
+    <!-- Product Summary -->
+    <section class="summary">
+      <h2>Product Summary</h2>
+      <div class="product-info">
+        <img src="https://via.placeholder.com/120" alt="Product Image">
+        <div>
+          <strong>Smart Watch X5</strong><br>
+          Quantity: 1<br>
+          Total Price: <span style="color:#b12704;">Rs. 4,499</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Order Form (Submit to Email) -->
+    <form action="https://formsubmit.co/pashashahzaib13@gmail.com" method="POST">
+      <!-- Hidden product info -->
+      <input type="hidden" name="product" value="Smart Watch X5">
+      <input type="hidden" name="price" value="Rs. 4,499">
+
+      <!-- Customer Info -->
+      <section class="form-section">
+        <h2>Customer Information</h2>
+        <label for="name">Full Name</label>
+        <input type="text" name="name" id="name" placeholder="Enter your name" required>
+
+        <label for="address">Address</label>
+        <textarea name="address" id="address" rows="3" placeholder="Enter shipping address" required></textarea>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" name="phone" id="phone" placeholder="03xx-xxxxxxx" required>
+      </section>
+
+      <!-- Payment -->
+      <section class="form-section">
+        <h2>Select Payment Method</h2>
+        <div class="payment-methods">
+          <div class="method">
+            <strong>JazzCash</strong>
+          </div>
+          <div class="method">
+            <strong>EasyPaisa</strong>
+          </div>
+        </div>
+
+        <!-- QR Code -->
+        <div class="qr-code">
+          <p>Scan QR Code to Pay</p>
+          <img src="https://via.placeholder.com/200x200?text=QR+Code" alt="QR Code">
+          <p><small>After payment, click Confirm Order</small></p>
+        </div>
+      </section>
+
+      <button class="btn" type="submit">Confirm Order</button>
+    </form>
+
+  </div>
+
+</body>
+</html>

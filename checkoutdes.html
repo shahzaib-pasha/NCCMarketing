@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout Page</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .checkout-container {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 800px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    .order-summary {
+      background: #f0f0f0;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .payment-section {
+      margin-top: 20px;
+    }
+    .payment-option {
+      margin-bottom: 15px;
+    }
+    .qr-details {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      background: #fefefe;
+      border: 1px dashed #999;
+      border-radius: 8px;
+    }
+    .qr-details img {
+      width: 150px;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .submit-btn:hover {
+      background: #2980b9;
+    }
+    .free-delivery {
+      background: #2ecc71;
+      padding: 10px;
+      color: #fff;
+      text-align: center;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="checkout-container">
+    <h2>Checkout</h2>
+    <div class="free-delivery">🎉 Free Home Delivery Available!</div>
+    <div class="order-summary" id="orderSummary"></div>
+    <form action="https://formsubmit.co/pashashahzaib13@gmail.com" method="POST">
+      
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" name="name" required />
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" name="phone" required />
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" required />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" required />
+      </div>
+      <div class="form-group">
+        <label>Delivery Address</label>
+        <textarea name="address" required></textarea>
+      </div>
+      
+      <div class="payment-section">
+        <h3>Select Payment Method</h3>
+        <div class="payment-option">
+          <label><input type="radio" name="payment" value="JazzCash" onclick="showQR('jazzcash')" required /> JazzCash</label>
+          <div class="qr-details" id="jazzcashQR">
+            <img src="jazzcash qr code.jpg" alt="JazzCash QR" />
+            <p>JazzCash Account: 0300-0000000</p>
+            <p>Account Name: Shahzaib Pasha</p>
+          </div>
+        </div>
+        <div class="payment-option">
+          <label><input type="radio" name="payment" value="EasyPaisa" onclick="showQR('easypaisa')" /> EasyPaisa</label>
+          <div class="qr-details" id="easypaisaQR">
+            <img src="easypaisa-qr.jpg" alt="EasyPaisa QR" />
+            <p>EasyPaisa Account: 0311-1111111</p>
+            <p>Account Name: Shahzaib Pasha</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Payment ID</label>
+          <input type="text" name="payment_id" required />
+        </div>
+      </div>
+      
+      <input type="hidden" name="_next" value="http://127.0.0.1:5500/thankyou.html">
+
+
+      <input type="hidden" name="product" id="hiddenProduct" />
+      <input type="hidden" name="color" id="hiddenColor" />
+      <input type="hidden" name="size" id="hiddenSize" />
+      <input type="hidden" name="qty" id="hiddenQty" />
+      <input type="hidden" name="price" id="hiddenPrice" />
+      <input type="hidden" name="next" value="index.html">
+
+
+      <button class="submit-btn" type="submit">Place Order</button>
+    </form>
+  </div>
+
+
+
+
+  
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    document.getElementById("orderSummary").innerHTML = `
+      <strong>Product:</strong> ${params.get("product")}<br>
+      <strong>Color:</strong> ${params.get("color")}<br>
+      <strong>Size:</strong> ${params.get("size")}<br>
+      <strong>Quantity:</strong> ${params.get("qty")}<br>
+      <strong>Total:</strong> ₨${params.get("price")}
+    `;
+
+    document.getElementById("hiddenProduct").value = params.get("product");
+    document.getElementById("hiddenColor").value = params.get("color");
+    document.getElementById("hiddenSize").value = params.get("size");
+    document.getElementById("hiddenQty").value = params.get("qty");
+    document.getElementById("hiddenPrice").value = params.get("price");
+
+    function showQR(method) {
+      document.getElementById("jazzcashQR").style.display = method === 'jazzcash' ? 'block' : 'none';
+      document.getElementById("easypaisaQR").style.display = method === 'easypaisa' ? 'block' : 'none';
+    }
+  </script>
+</body>
+</html>

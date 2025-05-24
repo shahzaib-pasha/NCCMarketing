@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Page</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f3f4f6;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .product-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      max-width: 700px;
+      width: 100%;
+    }
+    .product-image {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    .product-title {
+      font-size: 28px;
+      font-weight: bold;
+      color: #333;
+    }
+    label {
+      margin-top: 15px;
+      display: block;
+      font-weight: 600;
+    }
+    select, input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .ratings {
+      margin: 15px 0;
+      color: #f39c12;
+    }
+    .price-display {
+      margin-top: 20px;
+      font-size: 24px;
+      color: #e74c3c;
+      font-weight: bold;
+    }
+    .buy-btn {
+      margin-top: 25px;
+      background: #2ecc71;
+      color: #fff;
+      padding: 14px;
+      width: 100%;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .buy-btn:hover {
+      background: #27ae60;
+    }
+  </style>
+</head>
+<body>
+  <div class="product-container">
+    <img id="productImage" src="black-shirt.jpg" alt="T-Shirt" class="product-image" />
+    <h1 class="product-title">Stylish T-Shirt</h1>
+    <div class="ratings">
+      ★★★★☆ (4.5/5 Rating)
+    </div>
+    <label for="color">Select Color</label>
+    <select id="color">
+      <option value="Black" data-price="900" data-img="black-shirt.jpg">Black (+₨900)</option>
+      <option value="Red" data-price="850" data-img="red-shirt.jpg">Red (+₨850)</option>
+      <option value="Blue" data-price="800" data-img="blue-shirt.jpg">Blue (+₨800)</option>
+    </select>
+
+    <label for="size">Select Size</label>
+    <select id="size">
+      <option value="Small" data-price="0">Small (+₨0)</option>
+      <option value="Medium" data-price="100">Medium (+₨100)</option>
+      <option value="Large" data-price="200">Large (+₨200)</option>
+    </select>
+
+    <label for="quantity">Quantity</label>
+    <input type="number" id="quantity" min="1" value="1" />
+
+    <div class="price-display" id="totalPrice">Total: ₨900</div>
+
+    <button class="buy-btn" id="buyNowBtn">Buy Now</button>
+  </div>
+
+  <script>
+    const colorSelect = document.getElementById("color");
+    const sizeSelect = document.getElementById("size");
+    const quantityInput = document.getElementById("quantity");
+    const totalPriceDisplay = document.getElementById("totalPrice");
+    const productImage = document.getElementById("productImage");
+    const buyNowBtn = document.getElementById("buyNowBtn");
+
+    function updateTotal() {
+      const colorOption = colorSelect.selectedOptions[0];
+      const sizeOption = sizeSelect.selectedOptions[0];
+      const colorPrice = parseInt(colorOption.dataset.price);
+      const sizePrice = parseInt(sizeOption.dataset.price);
+      const quantity = parseInt(quantityInput.value) || 1;
+
+      const total = (colorPrice + sizePrice) * quantity;
+      totalPriceDisplay.textContent = `Total: ₨${total.toLocaleString()}`;
+      productImage.src = colorOption.dataset.img;
+      return total;
+    }
+
+    colorSelect.addEventListener("change", updateTotal);
+    sizeSelect.addEventListener("change", updateTotal);
+    quantityInput.addEventListener("input", updateTotal);
+
+    buyNowBtn.addEventListener("click", () => {
+      const product = "Stylish T-Shirt";
+      const color = colorSelect.value;
+      const size = sizeSelect.value;
+      const qty = quantityInput.value;
+      const price = updateTotal();
+
+      const params = new URLSearchParams({
+        product,
+        color,
+        size,
+        qty,
+        price
+      });
+
+      window.location.href = `checkoutdes.html?${params.toString()}`;
+    });
+
+    updateTotal();
+  </script>
+</body>
+</html>

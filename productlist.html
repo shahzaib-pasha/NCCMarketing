@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Online Store</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; }
+
+    /* Header */
+    header {
+      background-color: #131921;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: relative;
+      z-index: 1000;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .logo h1 {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #febd69;
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 25px;
+      height: 20px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .burger span {
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background-color: #232f3e;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-nav a {
+      padding: 1rem;
+      border-bottom: 1px solid #2a2a2a;
+      color: white;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .mobile-nav a:hover {
+      background-color: #37475a;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+
+      .burger {
+        display: flex;
+      }
+
+      .mobile-nav.show {
+        display: flex;
+      }
+
+      .burger.open span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .burger.open span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .burger.open span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+      }
+    }
+
+    /* Banner */
+    
+
+
+
+
+
+ body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .banner {
+      overflow: hidden;
+    }
+
+    .banner img {
+      width: 100%;
+      height: auto;
+      max-height: 400px;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1.05);
+      animation: bannerFadeZoom 4s ease-in-out forwards;
+    }
+
+    @keyframes bannerFadeZoom {
+      to {
+        opacity: 0.5;
+        transform: scale(1);
+      }
+    }
+
+
+
+
+
+
+    /* Products */
+    .products-section {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .products-section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .product {
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+      animation: fadeInUp 0.5s ease both;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+    }
+
+    .product h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .price {
+      font-size: 1.3rem;
+      color: #b12704;
+    }
+
+    .old-price {
+      text-decoration: line-through;
+      color: gray;
+      font-size: 1rem;
+      margin-left: 8px;
+    }
+
+    .rating {
+      color: #ffa41c;
+      margin: 0.5rem 0;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 0.7rem;
+      background-color: #ff9900;
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #e68a00;
+    }
+
+   .ecom-footer {
+  background-color: #1e2a38;
+  color: #ffffff;
+  padding: 40px 20px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-section {
+  flex: 1 1 200px;
+  min-width: 200px;
+}
+
+.footer-section h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #ffcc00;
+}
+
+.footer-section p,
+.footer-section a {
+  font-size: 14px;
+  color: #ccc;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 8px;
+}
+
+.social-icons a {
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.social-icons img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s;
+}
+
+.social-icons img:hover {
+  transform: scale(1.2);
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #444;
+  margin-top: 30px;
+  padding-top: 15px;
+  font-size: 13px;
+  color: #aaa;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-section {
+    margin-bottom: 20px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+#home{
+ color: #febd69;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Product Page Styles */
+.product-header {
+  background-color: #1e2a38;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+.product-search-box {
+  padding: 15px;
+  text-align: center;
+  background: #ffffff;
+}
+
+.product-search-box input {
+  width: 90%;
+  max-width: 500px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.product-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-card-box {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.product-card-box:hover {
+  transform: scale(1.02);
+}
+
+.product-img-box img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-info-box {
+  padding: 15px;
+}
+
+.product-info-box h3 {
+  font-size: 18px;
+  margin: 0 0 10px;
+}
+
+.product-info-box p {
+  margin: 5px 0;
+  color: #444;
+}
+
+.product-price {
+  color: #e53935;
+  font-weight: bold;
+}
+
+.product-info-box button {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.product-info-box button:hover {
+  background-color: #e65c00;
+}
+
+
+
+
+
+
+
+
+
+#product{
+
+ color: #febd69;
+
+
+
+}
+#mobproduct{
+
+ color: #febd69;
+
+
+
+}
+
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="logo.jpg" alt="Logo">
+      <h1>NCC Marketing</h1>
+    </div>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="productlist.html" id="product">Products</a>
+      <a href="aboutus.html">About Us</a>
+      <a href="printshirt.html">Print Your Shirt</a>
+    </nav>
+
+    <div class="burger" id="burger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html">Home</a>
+      <a href="productlist.html" id="mobproduct">Products</a>
+      <a href="aboutus.html">About Us</a>
+      <a href="printshirt.html">Print Your Shirt</a>
+    </div>
+  </header>
+
+
+  
+
+
+<div class="product-header">
+  <h1>🛍️ Our Products</h1>
+</div>
+
+<div class="product-search-box">
+  <input type="text" id="productSearchInput" placeholder="Search products...">
+</div>
+
+<div class="product-container" id="productGridContainer">
+  <!-- Product cards will appear here -->
+</div>
+
+<script>
+  const productList = [
+    { name: "Red Printed Shirt", price: 1200, image: "red-shirt.jpg" },
+    { name: "Blue Denim Jacket", price: 2500, image: "bluejac.jpg" },
+    { name: "Classic White T-Shirt", price: 800, image: "trowser.jpg" },
+    { name: "hoodie black", price: 2000, image: "black-hoodie.jpg" },
+    { name: "Green Polo Shirt", price: 1400, image: "greenpoloshirt.jpg" },
+  ];
+
+  const productGrid = document.getElementById("productGridContainer");
+  const searchBox = document.getElementById("productSearchInput");
+
+  function showProducts(filtered) {
+    productGrid.innerHTML = "";
+    filtered.forEach(product => {
+      const card = document.createElement("div");
+      card.className = "product-card-box";
+      card.innerHTML = `
+        <div class="product-img-box">
+          <img src="${product.image}" alt="${product.name}">
+        </div>
+        <div class="product-info-box">
+          <h3>${product.name}</h3>
+          <p class="product-price">Rs. ${product.price}</p>
+          <button onclick="alert('Redirect to buy page')">Buy Now</button>
+        </div>
+      `;
+      productGrid.appendChild(card);
+    });
+  }
+
+  // Initial load
+  showProducts(productList);
+
+  // Search filtering
+  searchBox.addEventListener("input", () => {
+    const text = searchBox.value.toLowerCase();
+    const filtered = productList.filter(p => p.name.toLowerCase().includes(text));
+    showProducts(filtered);
+  });
+</script>
+
+
+
+
+
+
+  
+
+  <!-- Burger Menu Script -->
+  <script>
+    const burger = document.getElementById('burger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      mobileNav.classList.toggle('show');
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <footer class="ecom-footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>🛍️ About Us</h3>
+      <p>We provide high-quality products at affordable prices. Your satisfaction is our top priority!</p>
+    </div>
+    <div class="footer-section">
+      <h3>📞 Contact</h3>
+      <p>Email: pashashahzaib13@gmail.com</p>
+      <p>Phone: +92 3204435925</p>
+      <p>Location: Lahore, Pakistan</p>
+    </div>
+    <div class="footer-section">
+      <h3>🔗 Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="productlist.html">Products</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="printshirt.html">Print Your Shirt</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>📱 Follow Us</h3>
+      <div class="social-icons">
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/24/733/733547.png" alt="Facebook"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/24/733/733579.png" alt="Instagram"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/24/733/733585.png" alt="Twitter"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/24/733/733553.png" alt="YouTube"></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 YourEcom. All rights reserved.</p>
+  </div>
+</footer>
+
+
+</body>
+</html>
